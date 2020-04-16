@@ -1,0 +1,45 @@
+#include "stdafx.h"
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+struct time
+{
+	int l;
+	int r;
+};
+
+bool cmp(time a, time b)
+{
+	if (a.r < b.r) return 1;
+	return 0;
+}
+
+int main()
+{
+	int nn;
+	
+	cin >> nn;
+
+	if (nn == 0) { cout << nn; return 0; }
+
+
+
+	vector <time> A(nn);
+	for (int i = 0; i < nn; i++) 
+		cin >> A[i].l >> A[i].r;
+
+	sort(A.begin(), A.end(), cmp); //сортировка по возрастанию времени окончания
+	vector <int> res(1); //аудитории, элементы массива - время, когда кончаются занятия в этой аудитории
+    for (int i = 0; i < nn; i++)
+	{
+		if (A[i].l >= res[0]) res[0] = A[i].r;
+		else res.push_back(A[i].r);
+		sort(res.begin(), res.end());
+	}
+	cout << res.size();
+	return 0;
+}
+
