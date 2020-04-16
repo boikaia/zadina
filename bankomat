@@ -1,0 +1,27 @@
+#include "stdafx.h"
+
+#include <iostream>
+
+
+using namespace std;
+
+int main()
+{
+	int A[6] = { 500, 200, 100, 50, 20, 10 };
+	int kol, i, j;
+	long n;
+
+	cin >> n;
+
+	kol = i = 0;
+	while(i!=6 && n!=0)
+	{
+		j= n / A[i];
+		kol += j;
+		n = n - A[i] * j;
+		i++;
+	}
+	if (n == 0) cout << kol;
+	else cout << "-1";
+    return 0;
+}
